@@ -32,7 +32,7 @@ class PostsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return Posts::find($id);
     }
 
     /**
@@ -40,7 +40,9 @@ class PostsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $post = Posts::find($id);
+        $post->update($request->all());
+        return $post;
     }
 
     /**
@@ -48,6 +50,14 @@ class PostsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return Posts::destroy($id);
+    }
+
+    /**
+     * Search specified resource from storage.
+     */
+    public function search(string $title)
+    {
+        return Posts::where('title', 'like', '%' . $title . '%')->get();
     }
 }

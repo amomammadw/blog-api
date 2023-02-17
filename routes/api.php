@@ -19,9 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/users', function () {
-});
-
-Route::get('/posts', [PostsController::class, 'index']);
-
-Route::post('/posts', [PostsController::class, 'store']);
+Route::resource('posts', PostsController::class);
+Route::get('/search/{title}', [PostsController::class, 'search']);
+// Route::get('/posts', [PostsController::class, 'index']);
+// Route::post('/posts', [PostsController::class, 'store']);
